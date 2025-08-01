@@ -2,14 +2,15 @@
 Tests for data processing module.
 """
 
-import pytest
-import pandas as pd
 import numpy as np
+import pandas as pd
+import pytest
+
 from src.data_processing import (
-    merge_datasets,
     clean_missing_values,
-    process_height_weight,
+    merge_datasets,
     process_age_data,
+    process_height_weight,
 )
 
 

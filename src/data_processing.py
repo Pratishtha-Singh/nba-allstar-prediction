@@ -4,9 +4,10 @@ Data Processing Module
 This module contains functions for loading, cleaning, and preprocessing NBA player data.
 """
 
-import pandas as pd
+from typing import List, Optional, Tuple
+
 import numpy as np
-from typing import Tuple, List, Optional
+import pandas as pd
 
 
 def load_nba_data(

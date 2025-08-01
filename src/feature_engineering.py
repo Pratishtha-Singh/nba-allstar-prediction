@@ -5,9 +5,10 @@ This module contains functions for creating new features and selecting optimal
 feature sets for NBA All-Star prediction.
 """
 
-import pandas as pd
-import numpy as np
 from typing import List, Tuple
+
+import numpy as np
+import pandas as pd
 
 
 def create_efficiency_features(df: pd.DataFrame) -> pd.DataFrame:
