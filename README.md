@@ -8,7 +8,7 @@
 
 A comprehensive machine learning analysis to predict NBA All-Star selections using historical player statistics from 2000-2016. This project demonstrates end-to-end data science methodology, from data preprocessing and feature engineering to model development and evaluation.
 
-## 🎯 Business Problem
+## Business Problem
 
 **Objective**: Develop a predictive model to identify players likely to be selected as NBA All-Stars based on their regular season performance statistics.
 
@@ -18,14 +18,14 @@ A comprehensive machine learning analysis to predict NBA All-Star selections usi
 - **Player Development**: Identify statistical benchmarks for All-Star recognition
 - **Fan Engagement**: Provide analytical insights into player performance
 
-## 📊 Key Results
+## Key Results
 
 - **Best Model**: Logistic Regression (AUC: 0.9839)
 - **Prediction Accuracy**: 70.8% precision on top-24 selections
 - **Feature Insights**: Points, PER, and VORP identified as strongest predictors
 - **Realistic Constraints**: Successfully implemented NBA's 24-player selection limit
 
-## 🛠️ Technical Stack
+## Technical Stack
 
 - **Data Processing**: Pandas, NumPy
 - **Visualization**: Matplotlib, Seaborn
@@ -35,7 +35,7 @@ A comprehensive machine learning analysis to predict NBA All-Star selections usi
 - **Testing**: Pytest
 - **Code Quality**: Black, Flake8, isort
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 nba-allstar-prediction/
@@ -68,7 +68,7 @@ nba-allstar-prediction/
 └── README.md
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -99,7 +99,7 @@ nba-allstar-prediction/
    jupyter notebook notebooks/project_file.ipynb
    ```
 
-## 📈 Data Sources
+## Data Sources
 
 - **Player Statistics**: Comprehensive NBA season statistics (2000-2016)
 - **All-Star Records**: Historical All-Star game selections 
@@ -111,7 +111,7 @@ nba-allstar-prediction/
 - **Features**: 50+ statistical and demographic variables
 - **Target**: Binary classification (All-Star vs Non-All-Star)
 
-## 🔬 Methodology
+## Methodology
 
 ### 1. Data Preprocessing & Cleaning
 - Missing value treatment with statistical imputation
@@ -138,7 +138,7 @@ nba-allstar-prediction/
 - Feature importance analysis
 - Business interpretation and recommendations
 
-## 🧪 Testing
+## Testing
 
 Run the test suite:
 
@@ -146,7 +146,7 @@ Run the test suite:
 pytest tests/ -v
 ```
 
-## 📝 Code Quality
+## Code Quality
 
 The project maintains high code quality standards:
 
@@ -161,7 +161,7 @@ isort src/ tests/
 flake8 src/ tests/
 ```
 
-## 🔄 CI/CD Pipeline
+## CI/CD Pipeline
 
 The project includes a comprehensive CI/CD pipeline that:
 
@@ -176,7 +176,7 @@ The project includes a comprehensive CI/CD pipeline that:
   - Updates documentation
   - Creates release artifacts
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -184,17 +184,17 @@ The project includes a comprehensive CI/CD pipeline that:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🏆 Acknowledgments
+## Acknowledgments
 
 - NBA for providing comprehensive statistical data
 - Basketball-Reference for historical All-Star information
 - The open-source data science community for excellent tools and libraries
 
-## 📧 Contact
+## Contact
 
 **Your Name** - your.email@example.com
 
