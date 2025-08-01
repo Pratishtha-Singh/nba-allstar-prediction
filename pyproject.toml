@@ -72,6 +72,12 @@ multi_line_output = 3
 line_length = 88
 known_first_party = ["src"]
 
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --strict-markers"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+
 [tool.coverage.run]
 source = ["src"]
 omit = [
