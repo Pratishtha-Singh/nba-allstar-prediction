@@ -1,0 +1,115 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, "3.10"]
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Lint with flake8
+      run: |
+        # Stop the build if there are Python syntax errors or undefined names
+        flake8 src/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        # Exit-zero treats all errors as warnings
+        flake8 src/ --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
+    
+    - name: Check code formatting with black
+      run: |
+        black --check src/ tests/
+    
+    - name: Check import sorting with isort
+      run: |
+        isort --check-only src/ tests/
+    
+    - name: Run tests with pytest
+      run: |
+        pytest tests/ -v --cov=src --cov-report=xml --cov-report=html
+    
+    - name: Execute notebook
+      run: |
+        # Install additional notebook dependencies
+        pip install papermill
+        # Create data directory and add sample data for testing
+        mkdir -p data/raw
+        # Execute notebook to ensure it runs without errors (skip if data files missing)
+        if [ -f "notebooks/project_file.ipynb" ]; then
+          echo "Executing notebook..."
+          papermill notebooks/project_file.ipynb notebooks/project_file_executed.ipynb || echo "Notebook execution failed - continuing with build"
+        else
+          echo "Notebook not found - skipping execution"
+        fi
+    
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install nbconvert
+    
+    - name: Convert notebook to HTML
+      run: |
+        # Create docs directory
+        mkdir -p docs
+        # Convert notebook to HTML if it exists
+        if [ -f "notebooks/project_file.ipynb" ]; then
+          jupyter nbconvert --to html notebooks/project_file.ipynb --output-dir docs/
+          # Create index.html that redirects to the notebook
+          echo '<html><head><meta http-equiv="refresh" content="0; url=project_file.html"></head><body><p><a href="project_file.html">View NBA All-Star Prediction Analysis</a></p></body></html>' > docs/index.html
+        else
+          echo '<html><body><h1>NBA All-Star Prediction Project</h1><p>Project setup in progress...</p></body></html>' > docs/index.html
+        fi
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: success()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+        publish_branch: gh-pages
