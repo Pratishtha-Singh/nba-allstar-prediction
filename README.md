@@ -39,33 +39,33 @@ A comprehensive machine learning analysis to predict NBA All-Star selections usi
 
 ```
 nba-allstar-prediction/
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml
 ├── data/
-│   ├── raw/                    # Original CSV files
-│   ├── processed/              # Cleaned and processed data
-│   └── results/                # Model outputs and predictions
+│   ├── processed/              # Processed data outputs
+│   ├── raw/                    # Raw NBA data files
+│       ├── All_Star.csv        # All-Star selections (2000-2016)
+│       ├── NBA All Star Games (1).xlsx # Additional All-Star data
+│       ├── Players.csv         # Player directory
+│       ├── player_data.csv     # Player demographics & career info
+│       └── Seasons_Stats.csv   # Season statistics (2000-2016)
 ├── notebooks/
-│   └── project_file.ipynb      # Main analysis notebook
+│   └── project_file.ipynb      # Main NBA All-Star analysis
 ├── src/
 │   ├── __init__.py
 │   ├── data_processing.py      # Data cleaning and preprocessing
-│   ├── feature_engineering.py  # Feature creation and selection
-│   ├── model_training.py       # Model training and evaluation  
-│   ├── visualization.py        # Plotting and visualization functions
-│   └── utils.py                # Utility functions
+│   └── feature_engineering.py # Feature creation and selection
 ├── tests/
 │   ├── __init__.py
-│   ├── test_data_processing.py
-│   ├── test_feature_engineering.py
-│   └── test_model_training.py
-├── .github/
-│   └── workflows/
-│       └── ci-cd.yml           # GitHub Actions workflow
-├── .gitignore
-├── requirements.txt
-├── setup.py
-├── pytest.ini
-├── pyproject.toml
-└── README.md
+│   └── test_data_processing.py # Unit tests
+├── .gitignore                  # Git ignore rules
+├── LICENSE                     # MIT license
+├── README.md                   # Project documentation
+├── requirements.txt            # Python dependencies
+├── pyproject.toml             # Project configuration
+├── pytest.ini                # Test configuration
+└── setup_project.py           # Project setup script
 ```
 
 ## Quick Start
@@ -194,12 +194,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Basketball-Reference for historical All-Star information
 - The open-source data science community for excellent tools and libraries
 
-## Contact
-
-**Your Name** - your.email@example.com
-
-Project Link: [https://github.com/YOUR_USERNAME/nba-allstar-prediction](https://github.com/YOUR_USERNAME/nba-allstar-prediction)
-
----
-
-**⭐ If you found this project helpful, please consider giving it a star!**
