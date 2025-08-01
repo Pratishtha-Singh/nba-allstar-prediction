@@ -121,16 +121,37 @@ def clean_missing_values(df: pd.DataFrame) -> pd.DataFrame:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")
 
-    # Calculate shooting percentages
-    df["3P%"] = df["3P%"].fillna(df["3P"] / df["3PA"])
-    df["2P%"] = df["2P%"].fillna(df["2P"] / df["2PA"])
-    df["FG%"] = df["FG%"].fillna(df["FG"] / df["FGA"])
-    df["FT%"] = df["FT%"].fillna(df["FT"] / df["FTA"])
-    df["eFG%"] = df["eFG%"].fillna((df["FG"] + 0.5 * df["3P"]) / df["FGA"])
+    # Calculate shooting percentages only if required columns exist
+    if "3P%" in df.columns and "3P" in df.columns and "3PA" in df.columns:
+        df["3P%"] = df["3P%"].fillna(df["3P"] / df["3PA"])
+    elif "3P" in df.columns and "3PA" in df.columns:
+        df["3P%"] = df["3P"] / df["3PA"]
+
+    if "2P%" in df.columns and "2P" in df.columns and "2PA" in df.columns:
+        df["2P%"] = df["2P%"].fillna(df["2P"] / df["2PA"])
+    elif "2P" in df.columns and "2PA" in df.columns:
+        df["2P%"] = df["2P"] / df["2PA"]
+
+    if "FG%" in df.columns and "FG" in df.columns and "FGA" in df.columns:
+        df["FG%"] = df["FG%"].fillna(df["FG"] / df["FGA"])
+    elif "FG" in df.columns and "FGA" in df.columns:
+        df["FG%"] = df["FG"] / df["FGA"]
+
+    if "FT%" in df.columns and "FT" in df.columns and "FTA" in df.columns:
+        df["FT%"] = df["FT%"].fillna(df["FT"] / df["FTA"])
+    elif "FT" in df.columns and "FTA" in df.columns:
+        df["FT%"] = df["FT"] / df["FTA"]
+
+    if "eFG%" in df.columns and "FG" in df.columns and "3P" in df.columns and "FGA" in df.columns:
+        df["eFG%"] = df["eFG%"].fillna((df["FG"] + 0.5 * df["3P"]) / df["FGA"])
+    elif "FG" in df.columns and "3P" in df.columns and "FGA" in df.columns:
+        df["eFG%"] = (df["FG"] + 0.5 * df["3P"]) / df["FGA"]
 
     # Fill remaining NaNs in percentages with 0.0
     percentage_cols = ["3P%", "2P%", "FG%", "FT%", "eFG%"]
-    df[percentage_cols] = df[percentage_cols].fillna(0.0)
+    existing_percentage_cols = [col for col in percentage_cols if col in df.columns]
+    if existing_percentage_cols:
+        df[existing_percentage_cols] = df[existing_percentage_cols].fillna(0.0)
 
     # Fill advanced stats with 0.0
     advanced_stats = [
