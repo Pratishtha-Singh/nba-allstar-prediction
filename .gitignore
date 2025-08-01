@@ -114,9 +114,17 @@ dmypy.json
 .pyre/
 
 # Data files (add your specific data files here)
-data/raw/*.csv
 data/processed/*.pkl
 data/processed/*.parquet
+
+# Allow specific NBA data files
+!data/raw/All_Star.csv
+!data/raw/player_data.csv
+!data/raw/Players.csv
+!data/raw/Seasons_Stats.csv
+# Still ignore other CSV files that might be generated
+data/raw/temp_*.csv
+data/raw/output_*.csv
 
 # Model files
 models/*.pkl
