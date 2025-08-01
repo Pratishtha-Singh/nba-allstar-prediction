@@ -41,8 +41,6 @@ A comprehensive machine learning analysis to predict NBA All-Star selections usi
 nba-allstar-prediction/
 ├── data/
 │   ├── raw/                    # Original CSV files
-│   ├── processed/              # Cleaned and processed data
-│   └── results/                # Model outputs and predictions
 ├── notebooks/
 │   └── project_file.ipynb      # Main analysis notebook
 ├── src/
