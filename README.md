@@ -1,6 +1,6 @@
 # NBA All-Star Prediction Analysis
 
-[![CI/CD Pipeline](https://github.com/YOUR_USERNAME/nba-allstar-prediction/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/YOUR_USERNAME/nba-allstar-prediction/actions/workflows/ci-cd.yml)
+[![CI/CD Pipeline](https://github.com/YOUR_USERNAME/nba-allstar-prediction/actions/workflows/ci-cd.yml/badge.svg)]([https://github.com/YOUR_USERNAME/nba-allstar-prediction/actions/workflows/ci-cd.yml](https://github.com/Pratishtha-Singh/nba-allstar-prediction/actions/workflows/ci-cd.yml))
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
