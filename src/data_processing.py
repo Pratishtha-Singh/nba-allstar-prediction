@@ -142,7 +142,12 @@ def clean_missing_values(df: pd.DataFrame) -> pd.DataFrame:
     elif "FT" in df.columns and "FTA" in df.columns:
         df["FT%"] = df["FT"] / df["FTA"]
 
-    if "eFG%" in df.columns and "FG" in df.columns and "3P" in df.columns and "FGA" in df.columns:
+    if (
+        "eFG%" in df.columns
+        and "FG" in df.columns
+        and "3P" in df.columns
+        and "FGA" in df.columns
+    ):
         df["eFG%"] = df["eFG%"].fillna((df["FG"] + 0.5 * df["3P"]) / df["FGA"])
     elif "FG" in df.columns and "3P" in df.columns and "FGA" in df.columns:
         df["eFG%"] = (df["FG"] + 0.5 * df["3P"]) / df["FGA"]
